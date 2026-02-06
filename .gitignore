@@ -1,5 +1,12 @@
 .venv/
-eny.py
+env.py
 __pycache__
 *.py[cod]
-db.Splite3
+db.sqlite3
+core.Microsoft*
+core.mongo*
+core.python*
+node_modules/
+github/
+.vscode/
+cloudinary_python.txt
