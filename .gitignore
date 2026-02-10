@@ -10,3 +10,5 @@ node_modules/
 github/
 .vscode/
 cloudinary_python.txt
+booking/fixtures/
+rooms.json
