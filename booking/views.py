@@ -1,8 +1,13 @@
-from django.http import HttpResponse
 from django.shortcuts import render
+from django.views import generic
+from .models import Room, RoomBooking
 
 # Create your views here.
 
+class RoomList(generic.ListView):
+    model = Room
 
-def home_page_view(request):
-    return HttpResponse("Project working fine")
+
+class BookingList(generic.ListView):
+    model = RoomBooking
+    template_name = 'booking/booking-list.html'

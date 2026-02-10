@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import home_page_view
+from .views import BookingList, RoomList
 
 
 urlpatterns = [
-    path('', home_page_view),
+    path('', RoomList.as_view(), name='room_list'),
+    path('bookings/', BookingList.as_view(), name='booking_list'),
 ]
