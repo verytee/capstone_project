@@ -1,6 +1,18 @@
-/* Sticky Navbar */
-nav {
-    position: sticky;
+/* Fixed Navbar */
+nav.navbar {
+    position: fixed;
     top: 0;
-    z-index: 1000;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000 !important;
+}
+
+/* Body and main adjustments */
+body {
+    padding-top: 56px;
+}
+
+main {
+    flex: 1;
 }
