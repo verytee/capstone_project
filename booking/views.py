@@ -20,4 +20,4 @@ class RoomList(generic.ListView):
 
 class BookingList(generic.ListView):
     model = RoomBooking
-    template_name = 'booking/booking-list.html'
+    template_name = 'booking/manage-booking.html'
