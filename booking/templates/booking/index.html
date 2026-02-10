@@ -1,22 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Available Rooms</title>
-</head>
+{% block content %}
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="mb-4">Available Rooms</h1>
+      </div>
 
-<body>
-    <h1>Available Rooms</h1>
+  <!-- Room Cards -->
+  <div class="row g-4">
     {% for room in object_list %}
-    <div>
-        <h2>{{room.type}}</h2>
-        <p><strong>{{room.subtitle}}</strong></p>
-        <p>{{room.description}}</p>
+    <div class="col-12 col-lg-4">
+      <div class="card h-100 shadow-sm">
+        <!-- Image Placeholder -->
+        <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
+          <div class="text-muted text-center">
+            <p>No Image Available</p>
+          </div>
+        </div>
+
+        <!-- Card Body -->
+        <div class="card-body d-flex flex-column">
+          <!-- Title (Bold) -->
+          <h5 class="card-title fw-bold mb-2">{{ room.type }}</h5>
+
+          <!-- Subtitle (Italics) -->
+          <p class="card-text text-muted fst-italic mb-2" style="font-size: 0.95rem;">{{ room.subtitle }}</p>
+
+          <!-- Description -->
+          <p class="card-text flex-grow-1">{{ room.description|safe }}</p>
+        </div>
+
+                <!-- Card Footer with Book Now -->
+        <div class="card-footer bg-light border-top">
+          {% if user.is_authenticated %}
+            <form method="post" action="{% url 'room_list' %}">
+              {% csrf_token %}
+              <input type="hidden" name="room_id" value="{{ room.id }}">
+
+              <div class="mb-2">
+                <label for="check-in-{{ room.id }}" class="form-label small mb-1">Check-in Date</label>
+                <input type="date" class="form-control form-control-sm" id="check-in-{{ room.id }}" name="check_in_date" required min="{{ today|date:'Y-m-d' }}">
+              </div>
+
+              <div class="mb-2">
+                <label for="nights-{{ room.id }}" class="form-label small mb-1">Number of Nights</label>
+                <input type="number" class="form-control form-control-sm" id="nights-{{ room.id }}" name="number_of_nights" min="1" required>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100 btn-sm">Book Now</button>
+            </form>
+          {% else %}
+            <p class="text-center text-muted mb-0 small">
+              <a href="{% url 'account_login' %}">Log in</a> to book a room
+            </p>
+          {% endif %}
+        </div>
+      </div>
     </div>
     {% endfor %}
-</body>
+  </div>
 
-</html>
+  {% if not rooms %}
+  <div class="row">
+    <div class="col-12">
+      <p class="text-center text-muted">No rooms available at the moment.</p>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}
