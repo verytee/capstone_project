@@ -5,6 +5,7 @@ from django_summernote.admin import SummernoteModelAdmin
 # Register your models here.
 admin.site.register(RoomBooking)
 
+
 @admin.register(Room)
 class RoomAdmin(SummernoteModelAdmin):
     summernote_fields = ('description',)
