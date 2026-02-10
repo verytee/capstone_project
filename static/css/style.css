@@ -6,6 +6,12 @@ nav.navbar {
     right: 0;
     width: 100%;
     z-index: 1000 !important;
+    background-color: #000000 !important;
+}
+
+/* Pure black footer */
+footer {
+    background-color: #000000 !important;
 }
 
 /* Body and main adjustments */
