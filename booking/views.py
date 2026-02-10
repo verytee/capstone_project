@@ -9,6 +9,7 @@ from .models import Room, RoomBooking
 class RoomList(generic.ListView):
     model = Room
     template_name = 'booking/index.html'
+    paginate_by = 6
 
 # add logic so dates in the past are not shown as available for booking
 
