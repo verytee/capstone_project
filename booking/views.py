@@ -28,11 +28,15 @@ class BookingList(LoginRequiredMixin, generic.ListView):
                 id=request.POST.get("booking_id"),
                 user=request.user
             )
-            booking.check_in = datetime.strptime(
-                request.POST.get("check_in_date"),
-                "%Y-%m-%d"
-            ).date()
-            booking.no_of_nights = int(request.POST.get("number_of_nights"))
+            try:
+                booking.check_in = datetime.strptime(
+                    request.POST.get("check_in_date"),
+                    "%Y-%m-%d"
+                ).date()
+                booking.no_of_nights = int(request.POST.get("number_of_nights"))
+            except (TypeError, ValueError):
+                return redirect(next_url)
+
             booking.save()
             return redirect(next_url)
 
