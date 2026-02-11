@@ -1,6 +1,8 @@
 from email.mime import image
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+from django.utils import timezone
 
 # Create your models here.
 
@@ -37,3 +39,11 @@ class RoomBooking(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.room.type} ({self.check_in})"
+
+    def clean(self):
+        if self.check_in and self.check_in < timezone.now().date():
+            raise ValidationError({"check_in": "Thw check-in date cannot be in the past."})
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        return super().save(*args, **kwargs)
