@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block content %}
 <div class="container my-5">
   <h1 class="mb-4">Available Rooms</h1>
@@ -35,7 +34,7 @@
           </form>
           {% else %}
           <p class="text-center text-muted mb-0 small">
-            <a href="{% url 'account_login' %}">Log in</a> to book a room
+            <a href="{% url 'account_login' %}">Log in</a> to book this room
           </p>
           {% endif %}
         </div>
@@ -43,10 +42,13 @@
     </div>
     {% endfor %}
   </div>
-
-  {% if not object_list %}
+    {% if not object_list %}
   <div class="alert alert-info text-center mt-4">No rooms available at the moment.</div>
   {% endif %}
 </div>
 
 {% endblock %}
+
+
+
+
