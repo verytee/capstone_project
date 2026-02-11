@@ -1,7 +1,5 @@
-from operator import add
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404
 from django.views import generic
-from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Room, RoomBooking
 from datetime import datetime
@@ -13,15 +11,7 @@ class RoomList(generic.ListView):
     model = Room
     template_name = 'booking/index.html'
 
-# add logic so dates in the past are not shown as available for booking
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['today'] = timezone.now().date()
-        return context
-
-
-class BookingList(LoginRequiredMixin, ListView):
+class BookingList(LoginRequiredMixin, generic.ListView):
     model = RoomBooking
     template_name = 'booking/manage-booking.html'
 
@@ -56,11 +46,15 @@ class BookingList(LoginRequiredMixin, ListView):
             return redirect(next_url)
 
         room = get_object_or_404(Room, id=request.POST.get("room_id"))
-        check_in_date = datetime.strptime(
-            request.POST.get("check_in_date"),
-            "%Y-%m-%d"
-        ).date()
-        nights = int(request.POST.get("number_of_nights"))
+        try:
+            check_in_date = datetime.strptime(
+                request.POST.get("check_in_date"),
+                "%Y-%m-%d"
+            ).date()
+            nights = int(request.POST.get("number_of_nights"))
+        except (TypeError, ValueError):
+            return redirect(next_url)
+
         RoomBooking.objects.create(
             user=request.user,
             room=room,
