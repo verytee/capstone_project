@@ -21,6 +21,7 @@
 
               <form method="post" action="{% url 'booking_list' %}" class="mt-3">
                 {% csrf_token %}
+                <input type="hidden" name="next" value="{% url 'manage_bookings' %}">
                 <input type="hidden" name="booking_id" value="{{ booking.id }}">
                 <input type="hidden" name="action" value="update">
                 <div class="row g-2 align-items-end">
@@ -40,6 +41,7 @@
 
               <form method="post" action="{% url 'booking_list' %}" class="mt-2">
                 {% csrf_token %}
+                <input type="hidden" name="next" value="{% url 'manage_bookings' %}">
                 <input type="hidden" name="booking_id" value="{{ booking.id }}">
                 <input type="hidden" name="action" value="delete">
                 <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
