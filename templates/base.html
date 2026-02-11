@@ -4,7 +4,7 @@
 <html class="h-100" lang="en">
 
 <head>
-    <title>Capstone Hotel</title>
+    <title>The Capstone Hotel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Google Fonts CSS -->
@@ -31,7 +31,7 @@
     <div class="container-fluid">
         <!-- Logo -->
         <a class="navbar-brand" href="{% url 'room_list' %}">
-            <img src="{% static 'images/logo.webp' %}" alt="Capstone Hotel Logo" height="40">CAPSTONE HOTEL
+            <img src="{% static 'images/logo.webp' %}" alt="The Capstone Hotel Logo" height="40">THE CAPSTONE HOTEL
         </a>
         
         <!-- Toggler for mobile -->
@@ -43,11 +43,11 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{% url 'room_list' %}">Home</a>
+                    <a class="nav-link text-white" href="{% url 'room_list' %}">Book to stay with us</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{% url 'booking_list' %}">My Bookings</a>
+                    <a class="nav-link text-white" href="{% url 'booking_list' %}">Manage Bookings</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{% url 'account_logout' %}">Logout</a>
