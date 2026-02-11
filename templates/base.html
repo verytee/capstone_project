@@ -52,6 +52,9 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{% url 'account_logout' %}">Logout</a>
                 </li>
+                <li class="nav-item">
+                    <span class="nav-link text-white-50 small">Logged in as: <strong>{{ user.username }}</strong></span>
+                </li>
                 {% else %}
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{% url 'account_login' %}">Login</a>
@@ -62,17 +65,6 @@
     </div>
 </nav>
     
-<!-- Logged in user indicator -->
-{% if user.is_authenticated %}
-<div class="container-fluid p-2">
-    <div class="container">
-        <p class="text-end mb-0 small text-muted">Logged in as: <strong>{{ user.username }}</strong></p>
-    </div>
-</div>
-{% endif %}
-
-
-
     <main>
 {% if messages %}
   <div class="container mt-3">
