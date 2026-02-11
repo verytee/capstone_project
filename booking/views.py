@@ -3,6 +3,7 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Room, RoomBooking
 from datetime import datetime
+from django.contrib import messages
 
 # Create your views here.
 
@@ -31,6 +32,7 @@ class BookingList(LoginRequiredMixin, generic.ListView):
                 user=request.user
             )
             booking.delete()
+            messages.success(request, "Booking deleted successfully.")
             return redirect(next_url)
 
         try:
@@ -51,6 +53,7 @@ class BookingList(LoginRequiredMixin, generic.ListView):
             booking.check_in = check_in_date
             booking.no_of_nights = nights
             booking.save()
+            messages.add_message(request, messages.SUCCESS, "Booking updated successfully.")
             return redirect(next_url)
 
         room = get_object_or_404(Room, id=request.POST.get("room_id"))
