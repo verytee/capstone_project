@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils import timezone
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -14,7 +15,7 @@ class Room(models.Model):
     type = models.CharField(max_length=200)
     subtitle = models.CharField(max_length=200)
     description = models.TextField()
-    # image field tba
+    featured_image = CloudinaryField('image', default='placeholder')
 
     class Meta:
         ordering = ['type']
