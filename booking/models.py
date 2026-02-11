@@ -42,7 +42,7 @@ class RoomBooking(models.Model):
 
     def clean(self):
         if self.check_in and self.check_in < timezone.now().date():
-            raise ValidationError({"check_in": "Thw check-in date cannot be in the past."})
+            raise ValidationError({"check_in": "The check-in date cannot be in the past."})
 
     def save(self, *args, **kwargs):
         self.full_clean()
