@@ -8,5 +8,23 @@
       <p class="text-muted">Update your dates, change nights, or delete a booking.</p>
     </div>
   </div>
- 
+
+  <div class="row">
+    <div class="col-12">
+      {% if object_list %}
+        <div class="list-group">
+          {% for booking in object_list %}
+            <div class="list-group-item">
+              <h5 class="mb-1">{{ booking.room.type }}</h5>
+              <p class="mb-1">Check-in: {{ booking.check_in }}</p>
+              <p class="mb-0">Nights: {{ booking.no_of_nights }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="alert alert-dark">You do not have any bookings yet.</div>
+      {% endif %}
+    </div>
+  </div>
+</div>
 {% endblock %}

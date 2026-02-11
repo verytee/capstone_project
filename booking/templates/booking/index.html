@@ -19,8 +19,9 @@
 
         <div class="card-footer bg-light border-top">
           {% if user.is_authenticated %}
-          <form method="post" action="{% url 'room_list' %}">
+          <form method="post" action="{% url 'booking_list' %}">
             {% csrf_token %}
+            <input type="hidden" name="next" value="{% url 'manage_bookings' %}">
             <input type="hidden" name="room_id" value="{{ room.id }}">
             <div class="mb-2">
               <label for="check-in-{{ room.id }}" class="form-label small mb-1">Check-in Date</label>
