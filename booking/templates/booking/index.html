@@ -20,7 +20,7 @@
         <div class="card-body d-flex flex-column justify-content-center">
           <h2 class="card-title fw-bold mb-2 fs-5">{{ room.type }}</h2>
           <p class="card-text text-muted fst-italic mb-2" style="font-size: 0.95rem;">{{ room.subtitle }}</p>
-          <p class="card-text flex-grow-1">{{ room.description|safe }}</p>
+          <div class="card-text flex-grow-1">{{ room.description|safe }}</div>
         </div>
 
         <div class="card-footer bg-light border-top">
