@@ -21,7 +21,7 @@ class BookingList(LoginRequiredMixin, generic.ListView):
     paginate_by = 3
 
     def get_queryset(self):
-        return RoomBooking.objects.filter(user=self.request.user)
+        return RoomBooking.objects.filter(user=self.request.user).order_by("check_in", "created_at")
 
     def post(self, request, *args, **kwargs):
         action = request.POST.get("action")

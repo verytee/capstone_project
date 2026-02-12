@@ -36,7 +36,7 @@ class RoomBooking(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ["check_in", "created_at"]
 
     def __str__(self):
         return f"{self.user.username} - {self.room.type} ({self.check_in})"
