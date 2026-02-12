@@ -6,7 +6,7 @@
 <head>
     <title>The Capstone Hotel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <!-- Google Fonts CSS -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
@@ -27,7 +27,7 @@
 <body class="d-flex flex-column h-100 main-bg">
 
     <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fw-bold">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <!-- Logo -->
         <a class="navbar-brand" href="{% url 'room_list' %}">
@@ -42,16 +42,16 @@
         <!-- Nav items -->
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="{% url 'room_list' %}">Book to stay with us</a>
-                </li>
-                {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="{% url 'booking_list' %}">Manage Bookings</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="{% url 'account_logout' %}">Logout</a>
-                </li>
+<li class="nav-item">
+    <a class="nav-link text-white {% if request.resolver_match.url_name == 'room_list' %}active{% endif %}" href="{% url 'room_list' %}">Book to stay with us</a>
+</li>
+{% if user.is_authenticated %}
+<li class="nav-item">
+    <a class="nav-link text-white {% if request.resolver_match.url_name == 'booking_list' or request.resolver_match.url_name == 'manage_bookings' %}active{% endif %}" href="{% url 'booking_list' %}">Manage Bookings</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link text-white {% if request.resolver_match.url_name == 'account_logout' %}active{% endif %}" href="{% url 'account_logout' %}">Logout</a>
+</li>
                 <li class="nav-item">
                     <span class="nav-link text-white-50 small">Logged in as: <strong>{{ user.username }}</strong></span>
                 </li>
