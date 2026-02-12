@@ -6,27 +6,23 @@ nav.navbar {
     right: 0;
     width: 100%;
     z-index: 1000 !important;
-    background-color: #000000 !important;
+    background-color: #000000;
+    color: #ffffff;
 }
 
-/* Pure black footer */
-footer {
-    background-color: #000000 !important;
+/* Navbar links styling */
+.navbar-nav .nav-link {
+    font-weight: normal;
 }
 
-.hero-banner {
-    width: 100%;
-    overflow: hidden;
+.navbar-nav .nav-link.active {
+    font-weight: bold;
 }
 
-.hero-banner__img {
-    width: 100%;
-    height: auto;
-    max-height: 300px;
-    object-fit: cover;
-    object-position: 50% 50%;
-    display: block;
+.navbar-nav .nav-link:hover {
+    text-decoration: underline;
 }
+
 
 /* Body and main adjustments */
 body {
@@ -48,6 +44,12 @@ main {
     object-fit: cover;
     display: block;
 } 
+
+/* Footer */
+footer {
+    background-color: #000000;
+    color: #ffffff;
+}
 
 /* Media queries */ 
 /* The Capstone Hotel text was too large on small screens */
