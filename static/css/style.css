@@ -14,6 +14,20 @@ footer {
     background-color: #000000 !important;
 }
 
+.hero-banner {
+    width: 100%;
+    overflow: hidden;
+}
+
+.hero-banner__img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    object-position: 40% 30%;
+    display: block;
+}
+
 /* Body and main adjustments */
 body {
     padding-top: 56px;
