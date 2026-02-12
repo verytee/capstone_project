@@ -18,6 +18,7 @@ class RoomList(generic.ListView):
 class BookingList(LoginRequiredMixin, generic.ListView):
     model = RoomBooking
     template_name = 'booking/manage-booking.html'
+    paginate_by = 3
 
     def get_queryset(self):
         return RoomBooking.objects.filter(user=self.request.user)
