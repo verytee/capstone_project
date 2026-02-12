@@ -8,14 +8,13 @@
     {% for room in object_list %}
     <div class="col-12 col-lg-4">
       <div class="card h-100 shadow-sm">
-        <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
-                 {% if "placeholder" in room.featured_image.url %}
-        <img class="card-img-top" src="{% static 'images/hero.webp' %}"
-           alt="placeholder image">
-        {% else %}
-        <img class="card-img-top" src=" {{ room.featured_image.url }}" alt="{{ room.type }}">
-        {% endif %}
-        </div>
+        <div class="card-img-top bg-light d-flex align-items-center justify-content-center room-card-media">
+  {% if "placeholder" in room.featured_image.url %}
+  <img class="card-img-top room-card-media__img" src="{% static 'images/hero.webp' %}" alt="placeholder image">
+  {% else %}
+  <img class="card-img-top room-card-media__img" src="{{ room.featured_image.url }}" alt="{{ room.type }}">
+  {% endif %}
+</div>
 
         <div class="card-body d-flex flex-column justify-content-center">
           <h5 class="card-title fw-bold mb-2">{{ room.type }}</h5>
