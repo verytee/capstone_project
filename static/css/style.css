@@ -33,4 +33,13 @@ main {
     height: 100%;
     object-fit: cover;
     display: block;
+} 
+
+/* Media queries */ 
+/* The Capstone Hotel text was too large on small screens */
+
+@media (max-width: 375px) {
+    .navbar-brand {
+        font-size: 0.95rem;
+    }
 }
