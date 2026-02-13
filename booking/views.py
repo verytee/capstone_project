@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Room, RoomBooking
 from datetime import datetime, timezone
 from django.contrib import messages
+from django.urls import reverse
 
 # Create your views here.
 
@@ -18,7 +19,7 @@ class RoomList(generic.ListView):
 class BookingList(LoginRequiredMixin, generic.ListView):
     model = RoomBooking
     template_name = 'booking/manage-booking.html'
-    paginate_by = 3
+    paginate_by = 6
 
     def get_queryset(self):
         return RoomBooking.objects.filter(
@@ -27,7 +28,15 @@ class BookingList(LoginRequiredMixin, generic.ListView):
 
     def post(self, request, *args, **kwargs):
         action = request.POST.get("action")
-        next_url = request.POST.get("next") or "manage_bookings"
+        next_url_name = request.POST.get("next", "")
+        
+        # Only allow specific safe redirects
+        allowed_redirects = ["manage_bookings", "room_list"]
+        
+        if next_url_name in allowed_redirects:
+            next_url = reverse(next_url_name)
+        else:
+            next_url = reverse("manage_bookings")
 
         if action == "delete":
             booking = get_object_or_404(
