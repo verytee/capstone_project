@@ -8,3 +8,8 @@ from django_summernote.admin import SummernoteModelAdmin
 class AboutUsAdmin(SummernoteModelAdmin):
 
     summernote_fields = ("description",)
+
+@admin.register(ContactRequest)
+class ContactRequestAdmin(admin.ModelAdmin):
+
+    list_display = ('message', 'read',)
