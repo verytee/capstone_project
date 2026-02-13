@@ -27,10 +27,12 @@ nav.navbar {
 /* Body and main adjustments */
 body {
     padding-top: 56px;
+    background-color: #F9FAFC;
 }
 
 main {
     flex: 1;
+    padding-bottom: 58px;
 }
 
 .room-card-media {
@@ -49,6 +51,12 @@ main {
 footer {
     background-color: #000000;
     color: #ffffff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 999;
 }
 
 /* Media queries */ 
