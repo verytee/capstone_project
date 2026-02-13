@@ -21,7 +21,9 @@ class BookingList(LoginRequiredMixin, generic.ListView):
     paginate_by = 3
 
     def get_queryset(self):
-        return RoomBooking.objects.filter(user=self.request.user).order_by("check_in", "created_at")
+        return RoomBooking.objects.filter(
+            user=self.request.user).order_by(
+                "check_in", "created_at")
 
     def post(self, request, *args, **kwargs):
         action = request.POST.get("action")
@@ -55,7 +57,8 @@ class BookingList(LoginRequiredMixin, generic.ListView):
             booking.check_in = check_in_date
             booking.no_of_nights = nights
             booking.save()
-            messages.add_message(request, messages.SUCCESS, "Booking updated successfully.")
+            messages.add_message(
+                request, messages.SUCCESS, "Booking updated successfully.")
             return redirect(next_url)
 
         room = get_object_or_404(Room, id=request.POST.get("room_id"))

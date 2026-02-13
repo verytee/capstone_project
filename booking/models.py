@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 from cloudinary.models import CloudinaryField
+from django.core.validators import MinValueValidator
 
 # Create your models here.
 
@@ -31,7 +32,7 @@ class RoomBooking(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     check_in = models.DateField()
-    no_of_nights = models.PositiveIntegerField()
+    no_of_nights = models.PositiveIntegerField(validators=[MinValueValidator(1)])
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
