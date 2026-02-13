@@ -2,7 +2,7 @@ from django.shortcuts import redirect, get_object_or_404
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Room, RoomBooking
-from datetime import datetime
+from datetime import datetime, timezone
 from django.contrib import messages
 
 # Create your views here.
@@ -69,3 +69,4 @@ class BookingList(LoginRequiredMixin, generic.ListView):
             no_of_nights=nights
         )
         return redirect(next_url)
+    

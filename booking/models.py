@@ -49,3 +49,13 @@ class RoomBooking(models.Model):
     def save(self, *args, **kwargs):
         self.full_clean()
         return super().save(*args, **kwargs)
+
+# Managing the status of the booking based on the check-in date.
+    @property
+    def status(self):
+        today = timezone.now().date()
+        if self.check_in and self.check_in < today:
+            return "Past Booking"
+        if self.check_in == today:
+            return "Checking in Today"
+        return "Confirmed Booking"
