@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <div class="container my-5">
@@ -27,4 +28,21 @@
     <div class="alert alert-dark">No About Us content available yet.</div>
   {% endif %}
 </div>
+<div class="container my-5">
+        <div class="col-12 col-md-6 my-5">
+            <h2>Get In Touch</h2>
+            <p>Have a question, request, or want to get in touch with us? 
+                Fill out the form below and we'll get back to you as soon as possible.</p>
+
+            <!--  form is going here  -->
+            <form method="post" action="{% url 'about' %}">
+                {% csrf_token %}
+                {{ contact_form|crispy }}
+                <button type="submit" class="btn btn-dark">Submit</button>
+        </div>
+        <div class="col-12 col-md-6 my-5">
+            Map is going here
+        </div>
+    </div>
+
 {% endblock %}

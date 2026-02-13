@@ -24,4 +24,4 @@ class ContactRequest(models.Model):
     is_resolved = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"Contact request from {self.name}"
+        return f"Contact request from {self.name} {self.email}"
