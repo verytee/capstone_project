@@ -15,6 +15,10 @@ class RoomList(generic.ListView):
     template_name = 'booking/index.html'
 
 
+class AboutUsView(generic.TemplateView):
+    template_name = 'about.html'
+
+
 # Shows and manages the current user's bookings.
 class BookingList(LoginRequiredMixin, generic.ListView):
     model = RoomBooking

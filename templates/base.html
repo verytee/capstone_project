@@ -1,4 +1,11 @@
 {% load static %}
+{% url 'about_us' as about_url %}
+{% url 'room_list' as room_list_url %}
+{% url 'booking_list' as booking_list_url %}
+{% url 'account_login' as login_url %}
+{% url 'account_signup' as signup_url %}
+{% url 'account_logout' as logout_url %}
+
 
 <!DOCTYPE html>
 <html class="h-100" lang="en">
@@ -45,6 +52,8 @@
 <li class="nav-item">
     <a class="nav-link text-white {% if request.resolver_match.url_name == 'room_list' %}active{% endif %}" href="{% url 'room_list' %}">Book to stay with us</a>
 </li>
+<li class="nav-item">
+    <a class="nav-link text-white {% if request.resolver_match.url_name == 'about_us' %}active{% endif %}" href="{% url 'about_us' %}">About Us</a>
 {% if user.is_authenticated %}
 <li class="nav-item">
     <a class="nav-link text-white {% if request.resolver_match.url_name == 'booking_list' or request.resolver_match.url_name == 'manage_bookings' %}active{% endif %}" href="{% url 'booking_list' %}">Manage Bookings</a>
