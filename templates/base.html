@@ -54,6 +54,9 @@
 </li>
 <li class="nav-item">
     <a class="nav-link text-white {% if request.resolver_match.url_name == 'about_us' %}active{% endif %}" href="{% url 'about_us' %}">About Us</a>
+    <li class="nav-item">
+    <a class="nav-link text-white" href="{% url 'about_us' %}#contact">Get In Touch</a>
+</li>
 {% if user.is_authenticated %}
 <li class="nav-item">
     <a class="nav-link text-white {% if request.resolver_match.url_name == 'booking_list' or request.resolver_match.url_name == 'manage_bookings' %}active{% endif %}" href="{% url 'booking_list' %}">Manage Bookings</a>
@@ -66,8 +69,9 @@
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{% url 'account_login' %}">Login</a>
-                    <a class="nav-link text-white" href="{% url 'account_signup' %}">Sign Up</a>
+                    <a class="nav-link text-white" href="{% url 'account_login' %}">Sign In</a></li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'account_signup' %}">Create an Account</a>
                 </li>
                 {% endif %}
             </ul>
