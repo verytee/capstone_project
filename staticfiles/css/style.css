@@ -32,7 +32,7 @@ body {
 
 main {
     flex: 1;
-    padding-bottom: 58px;
+    padding-bottom: 1rem;
 }
 
 .room-card-media {
@@ -51,19 +51,32 @@ main {
 footer {
     background-color: #000000;
     color: #ffffff;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
     width: 100%;
-    z-index: 999;
 }
 
 /* Media queries */ 
-/* The Capstone Hotel text was too large on small screens */
+/* The Capstone Hotel brand text was too large on small screens */
 
 @media (max-width: 375px) {
     .navbar-brand {
         font-size: 0.95rem;
+    }
+}
+
+/* Removed footer being stuck as on mobiles it obstructed too much screen 
+Larger screens, the footer is fixed at the bottom 
+and main content has padding to prevent overlap */
+
+@media (min-width: 992px) {
+    footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+    }
+
+    main {
+        padding-bottom: 60px; /* space for fixed footer */
     }
 }
