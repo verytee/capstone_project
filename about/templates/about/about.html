@@ -58,7 +58,7 @@
       <form method="post" action="{% url 'about_us' %}">
         {% csrf_token %}
         {{ contact_form|crispy }}
-        <button type="submit" class="btn btn-dark">Submit</button>
+        <button type="submit" class="btn btn-dark" aria-label="Submit contact request">Submit</button>
       </form>
     </div>
   </div>

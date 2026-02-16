@@ -32,13 +32,13 @@
             <input type="hidden" name="room_id" value="{{ room.id }}">
             <div class="mb-2">
               <label for="check-in-{{ room.id }}" class="form-label small mb-1">Check-in Date</label>
-              <input type="date" class="form-control form-control-sm" id="check-in-{{ room.id }}" name="check_in_date" required min="{% now 'Y-m-d' %}">
+              <input type="date" class="form-control form-control-sm" id="check-in-{{ room.id }}" name="check_in_date" required min="{% now 'Y-m-d' %}" aria-label="Select check-in date for {{ room.type }}">
             </div>
             <div class="mb-2">
               <label for="nights-{{ room.id }}" class="form-label small mb-1">Number of Nights</label>
-              <input type="number" class="form-control form-control-sm" id="nights-{{ room.id }}" name="number_of_nights" min="1" required>
+              <input type="number" class="form-control form-control-sm" id="nights-{{ room.id }}" name="number_of_nights" min="1" required aria-label="Enter number of nights for {{ room.type }}">
             </div>
-            <button type="submit" class="btn btn-dark">Book Now</button>
+            <button type="submit" class="btn btn-dark" aria-label="Book {{ room.type }} room">Book Now</button>
           </form>
           {% else %}
           <p class="text-center text-muted mb-0 small">
