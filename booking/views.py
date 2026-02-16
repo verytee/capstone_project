@@ -30,16 +30,16 @@ class BookingList(LoginRequiredMixin, generic.ListView):
         today = timezone.now().date()
         return RoomBooking.objects.filter(
             user=self.request.user,
-            check_in__gte=today  # Only bookings where check_in is today or FUTURE
+            check_in__gte=today  # Today or future bookings
         ).order_by("check_in", "created_at")
 
     def post(self, request, *args, **kwargs):
         action = request.POST.get("action")
         next_url_name = request.POST.get("next", "")
-        
+
         # Only allow specific safe redirects
         allowed_redirects = ["manage_bookings", "room_list"]
-        
+
         if next_url_name in allowed_redirects:
             next_url = reverse(next_url_name)
         else:
