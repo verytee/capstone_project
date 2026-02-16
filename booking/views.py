@@ -26,9 +26,12 @@ class BookingList(LoginRequiredMixin, generic.ListView):
     paginate_by = 6
 
     def get_queryset(self):
+        from django.utils import timezone
+        today = timezone.now().date()
         return RoomBooking.objects.filter(
-            user=self.request.user).order_by(
-                "check_in", "created_at")
+            user=self.request.user,
+            check_in__gte=today  # Only bookings where check_in is today or FUTURE
+        ).order_by("check_in", "created_at")
 
     def post(self, request, *args, **kwargs):
         action = request.POST.get("action")
@@ -82,4 +85,17 @@ class BookingList(LoginRequiredMixin, generic.ListView):
             no_of_nights=nights
         )
         return redirect(next_url)
-    
+
+
+class PreviousBookingList(LoginRequiredMixin, generic.ListView):
+    model = RoomBooking
+    template_name = 'booking/previous-booking.html'
+    paginate_by = None  # No pagination for previous bookings
+
+    def get_queryset(self):
+        from django.utils import timezone
+        today = timezone.now().date()
+        return RoomBooking.objects.filter(
+            user=self.request.user,
+            check_in__lt=today  # Only bookings where check_in is BEFORE today
+        ).order_by("-check_in", "-created_at")  # Newest past bookings first

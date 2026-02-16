@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="row mb-4">
+    <div class="col-12">
+      <h1 class="mb-2">Previous Bookings</h1>
+      <p class="text-muted">View your past stays at The Capstone Hotel.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      {% if object_list %}
+        <div class="list-group">
+          {% for booking in object_list %}
+            <div class="list-group-item">
+              <h2 class="card-title fw-bold mb-2 fs-5">{{ booking.room.type }}</h2>
+              <p class="mb-0">Status: {{ booking.status }}</p>
+              <p class="mb-1">Checked in on {{ booking.check_in|date:"D d M Y" }}</p>
+              <p class="mb-0">Number of nights {{ booking.no_of_nights }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="alert alert-dark">You do not have any previous bookings yet.</div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Back to Manage Bookings -->
+  <div class="row mt-4">
+    <div class="col-12 text-center">
+      <a href="{% url 'manage_bookings' %}" class="btn btn-dark">Back to Manage Bookings</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
