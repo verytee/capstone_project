@@ -5,8 +5,9 @@ from django.contrib import messages
 
 # Create your views here.
 
+
 def about_us(request):
-# Display on the about page
+    # Display on the about page
     about_info = AboutUs.objects.first()
     contact_form = ContactRequestForm()
 
@@ -18,7 +19,7 @@ def about_us(request):
             messages.add_message(
                 request, messages.SUCCESS, "Your message has been sent successfully. Our team will get back to you shortly.")
             return redirect("about_us")
-        else: 
+        else:
             messages.add_message(request, messages.ERROR, "There was an error sending your message. Please try again.")
             return redirect("about_us")
 

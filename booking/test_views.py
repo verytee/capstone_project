@@ -5,6 +5,7 @@ from django.test import TestCase
 from about import models
 from .models import Room, RoomBooking
 
+
 class TestBookingViews(TestCase):
 
     def setUp(self):
@@ -14,10 +15,10 @@ class TestBookingViews(TestCase):
             email="test@test.com"
         )
         self.room = Room.objects.create(
-            type = "Test Room",
-            subtitle = "Test Room Subtitle",
-            description = "Test room description",
-            featured_image = "placeholder"
+            type="Test Room",
+            subtitle="Test Room Subtitle",
+            description="Test room description",
+            featured_image="placeholder"
         )
         self.booking = RoomBooking.objects.create(
             user=self.user,
