@@ -30,4 +30,5 @@ def test_successful_contact_request_submission(self):
     }
     response = self.client.post(reverse('about_us'), post_data)
     self.assertEqual(response.status_code, 302)  # Expects redirect
-    self.assertRedirects(response, reverse('about_us'))  # Redirects to about page
+    self.assertRedirects(
+        response, reverse('about_us'))  # Redirects to about page

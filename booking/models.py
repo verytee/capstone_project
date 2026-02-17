@@ -32,7 +32,8 @@ class RoomBooking(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     check_in = models.DateField()
-    no_of_nights = models.PositiveIntegerField(validators=[MinValueValidator(1)])
+    no_of_nights = models.PositiveIntegerField(
+        validators=[MinValueValidator(1)])
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -44,7 +45,8 @@ class RoomBooking(models.Model):
 
     def clean(self):
         if self.check_in and self.check_in < timezone.now().date():
-            raise ValidationError({"check_in": "The check-in date cannot be in the past."})
+            raise ValidationError(
+                {"check_in": "The check-in date cannot be in the past."})
 
     def save(self, *args, **kwargs):
         self.full_clean()

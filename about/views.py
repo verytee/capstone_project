@@ -20,7 +20,8 @@ def about_us(request):
                 request, messages.SUCCESS, "Your message has been sent successfully. Our team will get back to you shortly.")
             return redirect("about_us")
         else:
-            messages.add_message(request, messages.ERROR, "There was an error sending your message. Please try again.")
+            messages.add_message(request, messages.ERROR,
+                                 "There was an error sending your message. Please try again.")
             return redirect("about_us")
 
     return render(

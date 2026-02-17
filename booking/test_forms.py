@@ -40,7 +40,8 @@ class RoomBookingModelTest(TestCase):
 
         with self.assertRaises(Exception) as context:
             booking.full_clean()
-        self.assertIn("The check-in date cannot be in the past.", str(context.exception))
+        self.assertIn("The check-in date cannot be in the past.",
+                      str(context.exception))
 
     def test_booking_with_zero_nights(self):
         user = User.objects.create_user(
@@ -59,4 +60,5 @@ class RoomBookingModelTest(TestCase):
 
         with self.assertRaises(Exception) as context:
             booking.full_clean()
-        self.assertIn("Ensure this value is greater than or equal to 1.", str(context.exception))
+        self.assertIn("Ensure this value is greater than or equal to 1.",
+                      str(context.exception))
