@@ -14,7 +14,7 @@ def about_us(request):
         contact_form = ContactRequestForm(request.POST)
         if contact_form.is_valid():
             contact_form.save()
-            contact_form = ContactRequestForm()  # Reset the form after saving 
+            contact_form = ContactRequestForm()  # Reset the form after saving
             messages.add_message(
                 request, messages.SUCCESS, "Your message has been sent successfully. Our team will get back to you shortly.")
             return redirect("about_us")
@@ -24,9 +24,9 @@ def about_us(request):
 
     return render(
         request,
-        "about/about.html", 
+        "about/about.html",
         {
-            "about_info": about_info, 
+            "about_info": about_info,
             "contact_form": contact_form
             },
     )
